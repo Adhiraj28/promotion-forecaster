@@ -1,0 +1,352 @@
+/* Main styles for CRPF Promotion Forecaster */
+
+:root {
+  --primary: #2c3e50;
+  --primary-light: #34495e;
+  --secondary: #3498db;
+  --secondary-light: #5dade2;
+  --accent: #e74c3c;
+  --gray-light: #ecf0f1;
+  --gray: #bdc3c7;
+  --gray-dark: #7f8c8d;
+  --text: #2c3e50;
+  --white: #ffffff;
+  --success: #2ecc71;
+  --border-radius: 4px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f7fa;
+  color: var(--text);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Search Panel */
+.search-panel {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+label {
+  font-weight: 500;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  margin-top: 2px;
+}
+
+.search-result-item {
+  display: flex;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: var(--gray-light);
+}
+
+.officer-details {
+  flex-grow: 1;
+}
+
+.officer-name {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.officer-meta {
+  font-size: 12px;
+  color: var(--gray-dark);
+  margin-top: 5px;
+}
+
+.no-results {
+  padding: 10px 15px;
+  color: var(--gray-dark);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Tabs */
+.tabs {
+  margin-top: 30px;
+}
+
+.tab-buttons {
+  display: flex;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--gray);
+  overflow-x: auto;
+}
+
+.tab-buttons button {
+  background-color: transparent;
+  color: var(--gray-dark);
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-buttons button:hover {
+  background-color: var(--gray-light);
+  color: var(--primary);
+}
+
+.tab-buttons button.active {
+  color: var(--secondary);
+  border-bottom-color: var(--secondary);
+  font-weight: 600;
+}
+
+.tab-content {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Officer Tab */
+.officer-tab {
+  width: 100%;
+}
+
+.officer-tab h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th {
+  background-color: var(--primary-light);
+  color: var(--white);
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+td {
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+tr:hover {
+  background-color: var(--gray-light);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Timeline card */
+.timeline-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+.timeline-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 20px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+  opacity: 0.8;
+}
+
+.timeline-content {
+  padding: 20px;
+}
+
+.officer-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.info-item {
+  margin-bottom: 5px;
+}
+
+.info-item strong {
+  color: var(--primary);
+  margin-right: 5px;
+}
+
+.timeline-content h4 {
+  margin: 15px 0 10px;
+  color: var(--primary);
+}
+
+.timeline-pre {
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+/* Promotion events styling */
+.promotion-event {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: var(--gray-light);
+  border-left: 3px solid var(--secondary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.promotion-rank, .promotion-date, .promotion-cause {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.promotion-rank strong, .promotion-date strong, .promotion-cause strong {
+  color: var(--primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .search-input-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .tab-buttons {
+    overflow-x: auto;
+  }
+  
+  .tab-buttons button {
+    padding: 10px 15px;
+    white-space: nowrap;
+  }
+  
+  .officer-info {
+    grid-template-columns: 1fr;
+  }
+}
