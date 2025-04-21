@@ -162,14 +162,32 @@ function App() {
 
   // Select officer from search results
   const selectOfficer = useCallback((officer) => {
-    setSearchedOfficer(officer);
+    // Create a copy of the officer to display
+    const officerToDisplay = { ...officer };
+    
+    // Check if the officer has any promotions up to current date
+    if (promotionRecords[officer.IRLA] && promotionRecords[officer.IRLA].length > 0) {
+      // Get all promotions that happened on or before current date
+      const validPromotions = promotionRecords[officer.IRLA].filter(promotion => {
+        const promotionDate = promotion[1]; // Date is the second item in the promotion array
+        return promotionDate <= currentDate;
+      });
+      
+      // If there are valid promotions, update the displayed rank to the latest one
+      if (validPromotions.length > 0) {
+        const latestPromotion = validPromotions[validPromotions.length - 1];
+        officerToDisplay.Rank = latestPromotion[0]; // Update to promoted rank
+      }
+    }
+    
+    setSearchedOfficer(officerToDisplay);
     setSearchText(officer.Name);
     setShowSearchResults(false);
     
     // Compute promotion timeline for the selected officer
     const timelineText = computePromotionTimeline(officer.IRLA, promotionRecords);
     setTimeline(timelineText);
-  }, [promotionRecords]);
+  }, [promotionRecords, currentDate]);
 
   // Load initial data and apply current date filter
   useEffect(() => {
@@ -347,7 +365,7 @@ function App() {
       
       // Create HTML formatted text for each promotion event
       const formattedLine = `<div class="promotion-event">
-        <span class="promotion-rank">Promoted to <strong>${newRank}</strong></span>
+        <span class="promotion-rank">Promotion to <strong>${newRank}</strong></span>
         <span class="promotion-date">on <strong>${dateStr}</strong></span>
         <span class="promotion-cause">(triggered by retirement of <strong>${causeName}</strong> [${causeIRLA}])</span>
       </div>`;
@@ -498,6 +516,9 @@ function App() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="footer">
+        Developed by Adhiraj Singh Bains
       </div>
     </div>
   );
